@@ -1,6 +1,8 @@
 import React from 'react';
-   import SignUp from '../src/screens/SignUp';
+import { View, Text } from 'react-native';
 
-   export default function Signup() {
-     return <SignUp />;
-   }
+const SignUp: React.FC = () => {
+  return <View><Text>Sign Up Page</Text></View>;
+};
+
+export default SignUp;
