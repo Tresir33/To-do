@@ -1,43 +1,62 @@
-import React from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
-import AddButton from '../components/button/Add';
-import MenuBurger from '../components/MenuBurger/MenuBurger';
+import React, { useEffect } from 'react';
+     import { View, Text, StyleSheet, Alert } from 'react-native';
+     import AddButton from '../components/button/Add';
+     import MenuBurger from '../components/MenuBurger/MenuBurger';
+     import { addTaskLocally, getLocalTasks } from '../services/storage';
 
-const Homepage: React.FC = () => {
-  const handleAddTask = () => {
-    Alert.alert('Add Task', 'Task addition functionality to be implemented!');
-  };
+     const Homepage: React.FC = () => {
+       const handleAddTask = () => {
+         Alert.alert('Add Task', 'Task addition functionality to be implemented!');
+       };
 
-  return (
-    <View style={styles.container}>
-      <MenuBurger />
-      <Text style={styles.title}>ToDo App</Text>
-      <View style={styles.buttonContainer}>
-        <AddButton onPress={handleAddTask} />
-      </View>
-    </View>
-  );
-};
+       useEffect(() => {
+         // Test AsyncStorage (remove after testing)
+         const testAsyncStorage = async () => {
+           try {
+             await addTaskLocally('testUser', {
+               title: 'Test Task',
+               deadline: new Date().toISOString(),
+               description: 'Test description',
+             });
+             const tasks = await getLocalTasks('testUser');
+             Alert.alert('Success', `Added task: ${tasks[0].title}`);
+           } catch (error) {
+             Alert.alert('Error', 'Failed to add test task.');
+           }
+         };
+         testAsyncStorage();
+       }, []);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: 60, // Adjusted to avoid overlap with MenuBurger
-    alignSelf: 'center',
-  },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 30,
-    alignSelf: 'center',
-  },
-});
+       return (
+         <View style={styles.container}>
+           <MenuBurger />
+           <Text style={styles.title}>ToDo App</Text>
+           <View style={styles.buttonContainer}>
+             <AddButton onPress={handleAddTask} />
+           </View>
+         </View>
+       );
+     };
 
-export default Homepage;
+     const styles = StyleSheet.create({
+       container: {
+         flex: 1,
+         justifyContent: 'space-between',
+         alignItems: 'center',
+         backgroundColor: '#f5f5f5',
+         padding: 20,
+       },
+       title: {
+         fontSize: 24,
+         fontWeight: 'bold',
+         marginTop: 60,
+         alignSelf: 'center',
+       },
+       buttonContainer: {
+         position: 'absolute',
+         bottom: 30,
+         alignSelf: 'center',
+       },
+     });
+
+     export default Homepage;
