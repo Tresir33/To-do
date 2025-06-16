@@ -1,36 +1,19 @@
 {
-  "expo": {
-    "name": "to-do",
-    "slug": "to-do",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/images",
-    "scheme": "todo",
-    "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-      },
-      "edgeToEdgeEnabled": true
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": ""
-    },
-    "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-        }
-      ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
-  }
-}
+     "expo": {
+       "name": "to-do",
+       "slug": "to-do",
+       "version": "1.0.0",
+       "assetBundlePatterns": ["**/*"],
+       "plugins": [
+         "@react-native-firebase/app"
+       ],
+       "ios": {
+         "bundleIdentifier": "com.yourcompany.todo",
+         "googleServicesFile": "./GoogleService-Info.plist"
+       },
+       "android": {
+         "package": "com.yourcompany.todo",
+         "googleServicesFile": "./google-services.json"
+       }
+     }
+   }

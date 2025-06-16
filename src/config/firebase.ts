@@ -1,6 +1,7 @@
 import { initializeApp } from '@react-native-firebase/app';
 import { getAuth, initializeAuth, getReactNativePersistence } from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from 'react-native';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,12 +13,20 @@ const firebaseConfig = {
   appId: "1:1029383741143:web:9937656fc0a025142e9a92"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Declare auth at module scope
+let auth;
 
-// Initialize Auth with AsyncStorage persistence
-const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(AsyncStorage),
-});
+// Initialize Firebase
+if (Platform.OS === 'web') {
+  const { initializeApp: initializeAppWeb } = require('firebase/app');
+  const { getAuth: getAuthWeb } = require('firebase/auth');
+  const app = initializeAppWeb(firebaseConfig);
+  auth = getAuthWeb(app);
+} else {
+  const app = initializeApp(firebaseConfig);
+  auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage),
+  });
+}
 
 export { auth };

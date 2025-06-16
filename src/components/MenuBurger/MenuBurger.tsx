@@ -1,6 +1,7 @@
 // to-do/src/components/MenuBurger/MenuBurger.tsx
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
+import { Link } from 'expo-router';
 
 const MenuBurger: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,15 +31,16 @@ const MenuBurger: React.FC = () => {
       >
         <View style={styles.menuContent}>
           <TouchableOpacity onPress={toggleMenu}>
-            <Text style={styles.closeIcon}></Text>
+            <Text style={styles.closeIcon}>✕</Text>
           </TouchableOpacity>
-          <Text style={styles.menuText}>Menu Content (To Be Added)</Text>
+          <Link href="/signup" style={styles.menuItem}>
+            <Text>Sign Up</Text>
+          </Link>
         </View>
       </Animated.View>
     </>
   );
 };
-
 const styles = StyleSheet.create({
   iconContainer: {
     position: 'absolute',

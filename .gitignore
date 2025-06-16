@@ -38,4 +38,6 @@ yarn-error.*
 
 app-example
 
-to-do/src/config/firebase.ts
+src/config/firebase.ts
+GoogleService-Info.plist
+google-services.json
