@@ -4,6 +4,7 @@
        "slug": "to-do",
        "version": "1.0.0",
        "assetBundlePatterns": ["**/*"],
+       "scheme": "todoapp",
        "plugins": [
          "@react-native-firebase/app"
        ],

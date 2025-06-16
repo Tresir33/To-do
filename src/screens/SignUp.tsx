@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert, Platform } from 'react-native';
 import Validate from '../components/button/Validate';
 import { auth } from '../config/firebase';
-import { createUserWithEmailAndPassword } from '@react-native-firebase/auth';
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -35,7 +34,7 @@ const SignUp: React.FC = () => {
   const handleSignUp = async () => {
     if (!validateInputs()) return;
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await auth.createUserWithEmailAndPassword(email, password);
       if (Platform.OS === 'web') {
         alert('Account created successfully!');
       } else {
