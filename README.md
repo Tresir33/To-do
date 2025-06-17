@@ -1,6 +1,15 @@
-# Welcome to your Expo app 👋
+# Welcome to my To-do list mobile app - quick summary👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). 
+
+Users create & save real-time task to help them organize the their daily task in a more managable manner.
+
+## Pre-requirements
+
+install node.js
+install react native
+install andriod studio/expo.dev 
+install JDK 
 
 ## Get started
 
@@ -16,14 +25,26 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Extra dependecies installation
+    
+    ```bash
+    npm install @react-native-firebase/app
+    ```
+    ```bash
+    npm install @react-native-firebase/auth
+    ```
+    ```bash
+    npm install @react-native-async-storage/async-storage
+    ```
+    ```bash
+    npm install firbase
+    ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+4. Github
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+    ```bash/prompt/powershell etc...
+    nevigate to project root & git clone git@github.com:MelvinAssi/FitnessDev.git
+    ```
 
 ## Get a fresh project
 
@@ -35,17 +56,45 @@ npm run reset-project
 
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
+## Tech Stack
 
-To learn more about developing your project with Expo, look at the following resources:
+* Frontend: React-Native
+* Backend: node.js
+* Database: 
+           - Firebase: save user auth, eg. username, email etc...
+           - AsyncStorage: save task data
+* test: 
+       - Console for errors
+       - Postman for API
+* Deployment: Google store
+* tools:
+        - Trello: task manager
+        - Github: Version control.
+        - VSCode: Coding environment
+        
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Project structure
 
-## Join the community
+   *To-do/:
+           -src/: Code source (components, config, screens, API, etc...)
+           -.gitignore/: Ignore node_modules/, .vscode/.
+           -eslint.config/:
+           -App.tsx: main app view module
+           -package.json : Dépendances.
+           -package-lock.json : Existing versions.
 
-Join our community of developers creating universal apps.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# To-do
+## Functionality
+
+* Sign-up: users register their email, password.
+* log-in: users log in through email verification.
+* Add task: add written task to storage.
+* delete task: delete existing task.
+
+## Technologies
+
+*Trello
+*Canvas
+*VSCode
+*Postman
+*Github
