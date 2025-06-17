@@ -61,16 +61,16 @@ This command will move the starter code to the **app-example** directory and cre
 * Frontend: React-Native
 * Backend: node.js
 * Database: 
-           - Firebase: save user auth, eg. username, email etc...
-           - AsyncStorage: save task data
+   - Firebase: save user auth, eg. username, email etc...
+   - AsyncStorage: save task data
 * test: 
-       - Console for errors
-       - Postman for API
+   - Console for errors
+   - Postman for API
 * Deployment: Google store
 * tools:
-        - Trello: task manager
-        - Github: Version control.
-        - VSCode: Coding environment
+   - Trello: task manager
+   - Github: Version control.
+   - VSCode: Coding environment
         
 
 ## Project structure
