@@ -2,15 +2,16 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 interface AddButtonProps {
-  onPress: () => void;
+  onPress: () => void; // A function prop that takes no arguments and returns void. This allows the parent component (e.g., Homepage.tsx) to define what happens when the button is clicked.
 }
 
 const AddButton: React.FC<AddButtonProps> = ({ onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.icon}>+</Text>
+      <Text style={styles.icon}>+</Text> 
     </TouchableOpacity>
-  );
+  ); // Renders a TouchableOpacity component from React Native, which is a touchable wrapper that provides feedback (e.g., opacity change) when pressed.
+  // Renders a Text component inside the TouchableOpacity to display a “+” symbol, styled as an icon
 };
 
 const styles = StyleSheet.create({
