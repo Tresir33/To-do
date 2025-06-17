@@ -75,13 +75,13 @@ This command will move the starter code to the **app-example** directory and cre
 
 ## Project structure
 
-*To-do/:
-   -src/: Code source (components, config, screens, API, etc...)
-   -.gitignore/: Ignore node_modules/, .vscode/.
-   -eslint.config/:
-   -App.tsx: main app view module
-   -package.json : Dépendances.
-   -package-lock.json : Existing versions.
+* To-do/:
+   - src/: Code source (components, config, screens, API, etc...)
+   - .gitignore/: Ignore node_modules/, .vscode/.
+   - eslint.config/:
+   - App.tsx: main app view module
+   - package.json : Dépendances.
+   - package-lock.json : Existing versions.
 
 
 ## Functionality
@@ -93,8 +93,8 @@ This command will move the starter code to the **app-example** directory and cre
 
 ## Technologies
 
-*Trello
-*Canvas
-*VSCode
-*Postman
-*Github
+* Trello
+* Canvas
+* VSCode
+* Postman
+* Github
