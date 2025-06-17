@@ -31,7 +31,7 @@ const MenuBurger: React.FC = () => {
       >
         <View style={styles.menuContent}>
           <TouchableOpacity onPress={toggleMenu}>
-            <Text style={styles.closeIcon}>✕</Text>
+            <Text style={styles.closeIcon}></Text>
           </TouchableOpacity>
           <Link href="/signup" style={styles.menuItem}>
             <Text>Sign Up</Text>

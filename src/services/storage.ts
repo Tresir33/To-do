@@ -4,67 +4,76 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
    const TASKS_KEY = '@ToDoApp:Tasks';
 
    const generateId = () => {
-     return Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+     return Math.random().toString(36).substr(2, 8) + Date.now().toString(36);
    };
 
-   export const addTaskLocally = async (userId: string, task: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>): Promise<Task> => {
+   export const addTask = async (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt' | 'completed'>): Promise<Task> => {
+     if (!task.title || typeof task.title !== 'string') {
+       throw new Error('Task title is required and must be a string');
+     }
      try {
-       const tasks = await getLocalTasks(userId);
+       const tasks = await getTasks();
        const newTask: Task = {
          id: generateId(),
-         ...task,
+         title: task.title.trim(),
+         description: task.description?.trim(),
+         deadline: task.deadline,
          createdAt: new Date().toISOString(),
          updatedAt: new Date().toISOString(),
+         completed: false,
        };
        const updatedTasks = [...tasks, newTask];
-       await AsyncStorage.setItem(`${TASKS_KEY}:${userId}`, JSON.stringify(updatedTasks));
+       await AsyncStorage.setItem(TASKS_KEY, JSON.stringify(updatedTasks));
        return newTask;
      } catch (error) {
-       console.error('Error adding task locally:', error);
+       console.error('Error adding task:', error);
        throw error;
      }
    };
 
-   export const getLocalTasks = async (userId: string): Promise<Task[]> => {
+   export const getTasks = async (): Promise<Task[]> => {
      try {
-       const tasksJson = await AsyncStorage.getItem(`${TASKS_KEY}:${userId}`);
-       return tasksJson ? JSON.parse(tasksJson) : [];
+       const tasksJson = await AsyncStorage.getItem(TASKS_KEY);
+       const tasks = tasksJson ? JSON.parse(tasksJson) : [];
+       // Validate tasks
+       return tasks.filter((task: any) => task.id && task.title && typeof task.completed === 'boolean');
      } catch (error) {
-       console.error('Error retrieving local tasks:', error);
+       console.error('Error retrieving tasks:', error);
        return [];
      }
    };
 
-   export const updateTaskLocally = async (userId: string, updatedTask: Task): Promise<void> => {
+   export const updateTask = async (updatedTask: Task): Promise<void> => {
      try {
-       const tasks = await getLocalTasks(userId);
+       const tasks = await getTasks();
        const updatedTasks = tasks.map(task =>
          task.id === updatedTask.id
            ? { ...updatedTask, updatedAt: new Date().toISOString() }
            : task
        );
-       await AsyncStorage.setItem(`${TASKS_KEY}:${userId}`, JSON.stringify(updatedTasks));
+       await AsyncStorage.setItem(TASKS_KEY, JSON.stringify(updatedTasks));
      } catch (error) {
-       console.error('Error updating task locally:', error);
+       console.error('Error updating task:', error);
        throw error;
      }
    };
 
-   export const deleteTaskLocally = async (userId: string, taskId: string): Promise<void> => {
+   export const deleteTask = async (taskId: string): Promise<void> => {
      try {
-       const tasks = await getLocalTasks(userId);
+       const tasks = await getTasks();
        const updatedTasks = tasks.filter(task => task.id !== taskId);
-       await AsyncStorage.setItem(`${TASKS_KEY}:${userId}`, JSON.stringify(updatedTasks));
+       await AsyncStorage.setItem(TASKS_KEY, JSON.stringify(updatedTasks));
      } catch (error) {
-       console.error('Error deleting task locally:', error);
+       console.error('Error deleting task:', error);
        throw error;
      }
    };
 
-   export const clearLocalTasks = async (userId: string): Promise<void> => {
+   export const clearTasks = async (): Promise<void> => {
      try {
-       await AsyncStorage.removeItem(`${TASKS_KEY}:${userId}`);
+       await AsyncStorage.removeItem(TASKS_KEY);
      } catch (error) {
-       console.error('Error clearing local tasks:', error);
+       console.error('Error clearing tasks:', error);
+       throw error;
      }
    };
